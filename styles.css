@@ -8,6 +8,17 @@ body {
     box-sizing: border-box; /* Include padding in width calculations */
 }
 
+#login-container, #tracker-container {
+    margin: 0; /* No margins on mobile */
+    width: 100%; /* Full width on mobile */
+    background-color: #2D2D2D; /* Darker gray for both containers */
+    padding: 15px; /* Reduced padding for mobile */
+    border-radius: 8px; /* Larger radius for modern look */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Subtle black shadow for depth */
+    color: #FFFFFF; /* White text for contrast */
+    box-sizing: border-box; /* Include padding in width */
+}
+
 input, button {
     margin: 5px;
     padding: 5px;
@@ -65,17 +76,6 @@ button:hover {
     position: absolute; /* Remove fixed positioning on mobile */
 }
 
-#tracker-container {
-    margin: 0; /* No margins on mobile */
-    width: 100%; /* Full width on mobile */
-    background-color: #2D2D2D; /* Darker gray for the main tracker panel */
-    padding: 15px; /* Reduced padding for mobile */
-    border-radius: 8px; /* Larger radius for modern look */
-    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Subtle black shadow for depth */
-    color: #FFFFFF; /* White text for contrast */
-    box-sizing: border-box; /* Include padding in width */
-}
-
 h1, h2, h3 {
     margin: 10px 0; /* Consistent spacing on mobile */
     font-size: 20px; /* Larger headings for mobile readability */
@@ -90,6 +90,13 @@ h1, h2, h3 {
     body {
         padding: 20px; /* Restore padding on desktop */
         max-width: 1200px; /* Limit width on desktop */
+    }
+
+    #login-container, #tracker-container {
+        margin: 0; /* Full width between panels on desktop */
+        width: 100%; /* Full width within max-width */
+        max-width: 1200px; /* Match body max-width on desktop */
+        padding: 20px; /* Restore padding on desktop */
     }
 
     input, button {
@@ -119,12 +126,5 @@ h1, h2, h3 {
     .right-panel {
         right: 0;
         background-image: url('projection.jpg'); /* Movie theater POV image */
-    }
-
-    #tracker-container {
-        margin: 0; /* Full width between panels on desktop */
-        width: 100%; /* Full width within max-width */
-        max-width: 1200px; /* Match body max-width on desktop */
-        padding: 20px; /* Restore padding on desktop */
     }
 }

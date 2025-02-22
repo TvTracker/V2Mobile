@@ -8,8 +8,16 @@
 </head>
 <body>
     <div class="left-panel"></div>
-    <div id="tracker-container">
+    <div id="login-container">
         <h1>TV Series Tracker</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login / Register</button>
+        <p id="message"></p>
+    </div>
+    <div id="tracker-container" style="display: none;">
+        <h1>Welcome, <span id="current-user"></span>!</h1>
+        <button onclick="logout()">Logout</button>
         <h2>Your Series</h2>
         <div id="series-list"></div>
         <h3>Add New Series</h3>
