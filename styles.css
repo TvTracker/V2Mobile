@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px; /* Reduced padding for mobile */
+    background-color: #1C1C1C; /* Deep dark gray, modern and sleek */
+    color: #FFFFFF; /* White text for contrast */
+    width: 100%; /* Full width for mobile */
+    box-sizing: border-box; /* Include padding in width calculations */
+}
+
+input, button {
+    margin: 5px;
+    padding: 5px;
+    background-color: #444444; /* Medium gray for inputs/buttons */
+    border: 1px solid #666666; /* Slightly lighter gray border for contrast */
+    color: #FFFFFF; /* White text */
+    width: 100%; /* Full width on mobile for better touch targeting */
+    font-size: 16px; /* Larger text for touch screens */
+    border-radius: 4px; /* Rounded corners for modern look */
+}
+
+button {
+    cursor: pointer;
+    background-color: #1E90FF; /* Dodger blue, vibrant accent */
+    color: white;
+    border: none;
+    width: auto; /* Buttons adjust to content width */
+}
+
+button:hover {
+    background-color: #007BFF; /* Darker blue on hover */
+}
+
+.series {
+    border: 1px solid #666666; /* Lighter gray border for series panels */
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #4B0082; /* Dark purple for series panels */
+    color: #FFFFFF; /* White text on dark purple for readability */
+    border-radius: 4px; /* Rounded corners for modern look */
+}
+
+.finished-btn {
+    background-color: #2ECC40; /* Vibrant green for finished button */
+    margin-right: 5px; /* Space between buttons */
+}
+
+.finished-btn:hover {
+    background-color: #27AE60; /* Slightly darker green on hover */
+}
+
+.delete-btn {
+    background-color: #000000; /* Black for delete button */
+    margin-left: 5px; /* Space between buttons */
+}
+
+.delete-btn:hover {
+    background-color: #333333; /* Slightly lighter black on hover */
+}
+
+.left-panel, .right-panel {
+    display: none; /* Hide side panels on mobile by default */
+    width: 0; /* No width on mobile */
+    height: 0; /* No height on mobile */
+    position: absolute; /* Remove fixed positioning on mobile */
+}
+
+#tracker-container {
+    margin: 0; /* No margins on mobile */
+    width: 100%; /* Full width on mobile */
+    background-color: #2D2D2D; /* Darker gray for the main tracker panel */
+    padding: 15px; /* Reduced padding for mobile */
+    border-radius: 8px; /* Larger radius for modern look */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Subtle black shadow for depth */
+    color: #FFFFFF; /* White text for contrast */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+h1, h2, h3 {
+    margin: 10px 0; /* Consistent spacing on mobile */
+    font-size: 20px; /* Larger headings for mobile readability */
+}
+
+#series-list {
+    margin-bottom: 20px; /* Space below series list */
+}
+
+/* Desktop/Larger Screen Media Query (min-width: 768px) */
+@media (min-width: 768px) {
+    body {
+        padding: 20px; /* Restore padding on desktop */
+        max-width: 1200px; /* Limit width on desktop */
+    }
+
+    input, button {
+        width: auto; /* Restore auto width on desktop */
+        font-size: 14px; /* Smaller text on desktop */
+    }
+
+    h1, h2, h3 {
+        font-size: 24px; /* Larger headings on desktop */
+    }
+
+    .left-panel, .right-panel {
+        display: block; /* Show side panels on desktop */
+        width: 400px; /* Restore 400px width for desktop */
+        height: 100vh; /* Full height on desktop */
+        position: fixed; /* Restore fixed positioning on desktop */
+        top: 0;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .left-panel {
+        left: 0;
+        background-image: url('popcorn.jpg'); /* Chuck Norris image */
+    }
+
+    .right-panel {
+        right: 0;
+        background-image: url('projection.jpg'); /* Movie theater POV image */
+    }
+
+    #tracker-container {
+        margin: 0; /* Full width between panels on desktop */
+        width: 100%; /* Full width within max-width */
+        max-width: 1200px; /* Match body max-width on desktop */
+        padding: 20px; /* Restore padding on desktop */
+    }
+}
