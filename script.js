@@ -1,5 +1,6 @@
-// Load data from local storage
+// Load data from local storage with debugging
 let series = JSON.parse(localStorage.getItem('series')) || [];
+console.log('Loaded series from localStorage:', series);
 
 function addSeries() {
     const name = document.getElementById('series-name').value;
@@ -18,6 +19,7 @@ function addSeries() {
 
     series.push(newSeries);
     localStorage.setItem('series', JSON.stringify(series));
+    console.log('Added series, new data:', series);
     document.getElementById('series-name').value = '';
     document.getElementById('season').value = '';
     loadSeries();
@@ -42,12 +44,14 @@ function loadSeries() {
 function finishEpisode(index) {
     series[index].episode++;
     localStorage.setItem('series', JSON.stringify(series));
+    console.log('Updated episode, new data:', series);
     loadSeries();
 }
 
 function deleteSeries(index) {
     series.splice(index, 1);
     localStorage.setItem('series', JSON.stringify(series));
+    console.log('Deleted series, new data:', series);
     loadSeries();
 }
 
