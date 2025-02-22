@@ -1,5 +1,6 @@
-// Load data from local storage
+// Load data from local storage with debugging
 let users = JSON.parse(localStorage.getItem('users')) || {};
+console.log('Loaded users from localStorage:', users);
 let currentUser = null;
 
 function login() {
@@ -28,6 +29,7 @@ function login() {
 
     currentUser = username;
     localStorage.setItem('users', JSON.stringify(users));
+    console.log('Logged in as:', username, 'Data saved:', users);
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('tracker-container').style.display = 'block';
     document.getElementById('current-user').textContent = username;
@@ -35,6 +37,7 @@ function login() {
 }
 
 function logout() {
+    console.log('Logging out, current data:', users);
     currentUser = null;
     document.getElementById('login-container').style.display = 'block';
     document.getElementById('tracker-container').style.display = 'none';
@@ -60,6 +63,7 @@ function addSeries() {
 
     users[currentUser].series.push(seriesItem);
     localStorage.setItem('users', JSON.stringify(users));
+    console.log('Added series for', currentUser, 'New data:', users);
     document.getElementById('series-name').value = '';
     document.getElementById('season').value = '';
     loadSeries();
@@ -80,6 +84,8 @@ function loadSeries() {
             `;
             seriesList.appendChild(div);
         });
+    } else {
+        console.log('No current user or series data found:', currentUser, users);
     }
 }
 
@@ -87,7 +93,10 @@ function finishEpisode(index) {
     if (currentUser && users[currentUser] && users[currentUser].series) {
         users[currentUser].series[index].episode++;
         localStorage.setItem('users', JSON.stringify(users));
+        console.log('Updated episode for', currentUser, 'New data:', users);
         loadSeries();
+    } else {
+        console.log('Error updating episode: No user or series data');
     }
 }
 
@@ -95,23 +104,32 @@ function deleteSeries(index) {
     if (currentUser && users[currentUser] && users[currentUser].series) {
         users[currentUser].series.splice(index, 1);
         localStorage.setItem('users', JSON.stringify(users));
+        console.log('Deleted series for', currentUser, 'New data:', users);
         loadSeries();
+    } else {
+        console.log('Error deleting series: No user or series data');
     }
 }
 
 // Load login state on page load (if already logged in)
 window.onload = function() {
-    if (localStorage.getItem('users')) {
-        const usersData = JSON.parse(localStorage.getItem('users'));
-        for (let username in usersData) {
-            if (usersData[username].series && usersData[username].series.length > 0) {
-                currentUser = username;
-                document.getElementById('login-container').style.display = 'none';
-                document.getElementById('tracker-container').style.display = 'block';
-                document.getElementById('current-user').textContent = username;
-                loadSeries();
-                break;
+    try {
+        if (localStorage.getItem('users')) {
+            const usersData = JSON.parse(localStorage.getItem('users'));
+            console.log('Users data on load:', usersData);
+            for (let username in usersData) {
+                if (usersData[username].series && usersData[username].series.length > 0) {
+                    currentUser = username;
+                    document.getElementById('login-container').style.display = 'none';
+                    document.getElementById('tracker-container').style.display = 'block';
+                    document.getElementById('current-user').textContent = username;
+                    loadSeries();
+                    console.log('Auto-logged in as:', username);
+                    break;
+                }
             }
         }
+    } catch (e) {
+        console.error('Error loading users on page load:', e);
     }
 };
